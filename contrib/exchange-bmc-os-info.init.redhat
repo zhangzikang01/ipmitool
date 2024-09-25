@@ -199,8 +199,8 @@ get_bmc_ip()
 	#Thanks to http://ingvar.blog.redpill-linpro.com
 	for CHANNEL in `seq 1 14`
 	do
-		[ $(${IPMI_TOOL} lan print ${CHANNEL} 2>/dev/null \
-			| grep -q "^Set") ] || break
+		${IPMI_TOOL} lan print ${CHANNEL} 2>/dev/null \
+			| grep -q "^IP Address" && break
 	done
 
 	# Get BMC_IPv4 and BMC_URL from BMC
